@@ -54,7 +54,8 @@ int main(){
     novarocha = preenche_rocha(&novarocha, lat, long_i, peso, &listaM);
     insere_Rocha(&compartimentoL, novarocha);
     }
-    algoritmo_selection(&compartimentoL, qntdOperacoes, &comparacoes, &trocas);
+    algoritmo_quickSort(&compartimentoL);
+    //algoritmo_selection(&compartimentoL, qntdOperacoes, &comparacoes, &trocas);
     ImprimeCompartimento(&compartimentoL);
     printf("comparações: %d  trocas: %d\n", comparacoes, trocas);
     fclose(arq);

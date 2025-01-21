@@ -61,3 +61,45 @@ void algoritmo_selection(RochaIndv *rochas, int n, int *comparacoes, int *trocas
         }
     }
 }
+
+void Particao(int Esq, int Dir, int *i, int *j, ListaRochas *vetor){
+    RochaIndv pivo, aux;
+
+    *i = Esq;
+    *j = Dir;
+
+    pivo = vetor->vetor[(*i+*j) / 2];
+
+    do{
+
+        while (pivo.peso > vetor->vetor[*i].peso)
+        {
+            (*i)++;
+        }
+        while (pivo.peso < vetor->vetor[*j].peso)
+        {
+            (*j)--;
+        }
+        if(*i <= *j){
+            aux = vetor->vetor[*i];
+            vetor->vetor[*i] = vetor->vetor[*j]; 
+            vetor->vetor[*j] = aux;        
+            (*i)++;                    
+            (*j)--;
+        }
+        
+    } while (*i <= *j);
+    
+}
+void Ordena(int Esq, int Dir, ListaRochas *vetor) {
+    int i, j;
+    Particao(Esq, Dir, &i, &j, vetor);
+
+    if (Esq < j) Ordena(Esq, j, vetor);
+
+    if (i < Dir) Ordena(i, Dir, vetor);
+}
+
+void algoritmo_quickSort(ListaRochas *vetor){
+    Ordena(0, vetor->tamanho - 1, vetor);
+}

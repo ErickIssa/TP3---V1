@@ -25,6 +25,7 @@ int main(){
 
     for(int i = 0;i < qntdOperacoes;i++)
     {
+    printf("AAAAAAAAAAAAAAa %d\n", i);
     RochaIndv novarocha;
     float lat, long_i, peso;
     char minerais[100];
@@ -37,8 +38,13 @@ int main(){
     FLVaziaM(&listaM);
     fgets(minerais, 100, arq);
     
-    minerais[strlen(minerais)-1] = '\0';
-
+    if(minerais[strlen(minerais)-1] == '\n'){
+        minerais[strlen(minerais)-1] = '\0';
+    }
+    else{
+        minerais[strlen(minerais)] = '\0';
+    }
+    printf("%s", minerais);
     // Quebra os minerais em partes e adiciona à lista
     const char delim[] = " ";
     char *parte = strtok(minerais, delim);
@@ -50,10 +56,10 @@ int main(){
         LInsereM(&listaM, x);
         parte = strtok(NULL, delim);
     }
-    
     novarocha = preenche_rocha(&novarocha, lat, long_i, peso, &listaM);
     insere_Rocha(&compartimentoL, novarocha);
     }
+    //algoritmo_quickSort(&compartimentoL);
     algoritmo_selection(&compartimentoL, qntdOperacoes, &comparacoes, &trocas);
     ImprimeCompartimento(&compartimentoL);
     printf("comparações: %d  trocas: %d\n", comparacoes, trocas);

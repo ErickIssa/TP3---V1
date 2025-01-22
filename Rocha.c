@@ -12,7 +12,6 @@ RochaIndv preenche_rocha(RochaIndv* rocha, float lat_rocha, float long_rocha, fl
     set_peso(rocha, peso);
     char* classificacao = classificar(lista_mineral);
     set_categoria(rocha, classificacao);
-
     return *rocha;
 }
 
@@ -86,6 +85,9 @@ char* classificar(TListaMineral *pListaC)
         if (strcmp(pListaC->ItemM[0].Chave.nomeM, "Ferrolita") == 0 || (strcmp(pListaC->ItemM[1].Chave.nomeM, "Ferrolita")) == 0){
             if (strcmp(pListaC->ItemM[0].Chave.nomeM, "Solarium") == 0 || (strcmp(pListaC->ItemM[1].Chave.nomeM, "Solarium")) == 0){
                 return "Solarisfer";
+            }
+            else if (strcmp(pListaC->ItemM[0].Chave.nomeM, "Aquavitae") == 0 || (strcmp(pListaC->ItemM[1].Chave.nomeM, "Aquavitae")) == 0){
+                return "Aquaferro";
             }
         }   
     }

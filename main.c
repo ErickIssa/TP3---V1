@@ -37,8 +37,12 @@ int main(){
     FLVaziaM(&listaM);
     fgets(minerais, 100, arq);
     
-    minerais[strlen(minerais)-1] = '\0';
-
+    if(minerais[strlen(minerais)-1] == '\n'){
+        minerais[strlen(minerais)-1] = '\0';
+    }
+    else{
+        minerais[strlen(minerais)] = '\0';
+    }
     // Quebra os minerais em partes e adiciona à lista
     const char delim[] = " ";
     char *parte = strtok(minerais, delim);
@@ -50,20 +54,43 @@ int main(){
         LInsereM(&listaM, x);
         parte = strtok(NULL, delim);
     }
-    
     novarocha = preenche_rocha(&novarocha, lat, long_i, peso, &listaM);
     insere_Rocha(&compartimentoL, novarocha);
     }
-    algoritmo_selection(&compartimentoL, qntdOperacoes, &comparacoes, &trocas);
-    ImprimeCompartimento(&compartimentoL);
-    printf("comparações: %d  trocas: %d\n", comparacoes, trocas);
-    fclose(arq);
 
-    clock_t fim = clock();
-    double tempo_decorrido = (double)(fim - inicio) / 1000000;
-    printf("Tempo gasto: %f segundos\n", tempo_decorrido);
-    printf("\n"); 
 
+    int caso;
+    printf("---Digite o (1) para SelectionSort, Digite (2) para QuickSort--\n");
+    scanf("%d", &caso);
+    switch (caso)
+    {
+    case 1:{
+        //algoritmo_quickSort(&compartimentoL);
+        algoritmo_selection(&compartimentoL, qntdOperacoes, &comparacoes, &trocas);
+        ImprimeCompartimento(&compartimentoL);
+        printf("comparações: %d  trocas: %d\n", comparacoes, trocas);
+        fclose(arq);
+
+        clock_t fim = clock();
+        double tempo_decorrido = (double)(fim - inicio) / 1000000;
+        printf("Tempo gasto: %f segundos\n", tempo_decorrido);
+        printf("\n"); 
+
+        break;
+    }
+    case 2:
+    {
+        algoritmo_quickSort(&compartimentoL);
+        fclose(arq);
+
+        clock_t fim = clock();
+        double tempo_decorrido = (double)(fim - inicio) / 1000000;
+        printf("Tempo gasto: %f segundos\n", tempo_decorrido);
+        printf("\n"); 
+
+        break;
+    }
+    }
   
 
     return 0;

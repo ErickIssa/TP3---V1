@@ -13,9 +13,10 @@ void inicializarListaComp(ListaRochas* lista);
 void insere_Rocha(ListaRochas* lista, RochaIndv novaRocha);
 void remove_Rocha(ListaRochas* lista, int indice);
 void ImprimeCompartimento(ListaRochas* lista);
-void avaliaCombinacao(ListaRochas* lista, int combinacao, float* valorTotal, float* pesoTotal);
-void melhor_rocha(ListaRochas* lista);
-void marcaRochasUsadas(ListaRochas* lista, int combinacao);
 void troca_rochas(RochaIndv *a, RochaIndv *b);
 void algoritmo_selection(RochaIndv *rochas, int n, int *comparacoes, int *trocas);
+void Particao(int Esq, int Dir, int *i, int *j, ListaRochas *vetor, int *compar, int *trade);
+void Ordena(int Esq, int Dir, ListaRochas *vetor, int *compar, int *trade);
+void algoritmo_quickSort(ListaRochas *vetor);
+
 #endif
